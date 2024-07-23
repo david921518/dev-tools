@@ -4,7 +4,7 @@
 
 github_url='https://github.com/david921518/dev-tools/blob/master'
 gitee_url='https://gitee.com/david921518/dev-tools/blob/gitee'
-ignore_files=("./github-merge/replace_gitee.sh" "./LICENSE")
+ignore_files=("./github-merge/setup.sh" "./github-merge/replace_gitee.sh" "./LICENSE")
 
 rm -rf ./main_tmp
 mkdir -p ./main_tmp
@@ -43,3 +43,9 @@ done
 
 rm -rf ./main_tmp/
 
+# git commit to github
+cd ./gitee/
+git add *
+git commit -a -m "merge with main branch"
+git push origin gitee
+cd ../

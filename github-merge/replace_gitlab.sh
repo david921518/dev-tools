@@ -3,7 +3,7 @@
 # tested on Ubuntu 22.04
 
 github_url='https://github.com/david921518/dev-tools/blob/master'
-gitee_url='https://gitee.com/david921518/dev-tools/blob/gitee'
+gitlab_url='https://gitlab.com/david921518/dev-tools/blob/gitlab'
 ignore_files=("./github-merge/setup.sh"
        	"./github-merge/replace_gitee.sh"
        	"./github-merge/replace_gitlab.sh"
@@ -13,12 +13,12 @@ ignore_files=("./github-merge/setup.sh"
 rm -rf ./main_tmp
 mkdir -p ./main_tmp
 
-rm -rf ./gitee/*
+rm -rf ./gitlab/*
 
 cp -af ./main/* ./main_tmp/
-cp -af ./main/* ./gitee/
+cp -af ./main/* ./gitlab/
 
-# sed 's$https://github.com/david921518/dev-tools/blob/master$https://gitee.com/david921518/dev-tools/blob/gitee$' ./main/github-merge/README.md > ./gitee/github-merge/README.md
+# sed 's$https://github.com/david921518/dev-tools/blob/master$https://gitlab.com/david921518/dev-tools/blob/gitlab$' ./main/github-merge/README.md > ./gitlab/github-merge/README.md
 
 cd ./main_tmp/
 files=$(find .)
@@ -36,7 +36,7 @@ do
 		done
 		if [[ "$matched" == 'false' ]]; then
 			echo "replace $filename"
-			sed "s^$github_url^$gitee_url^" "./main_tmp/$filename" > "./gitee/$filename"
+			sed "s^$github_url^$gitlab_url^" "./main_tmp/$filename" > "./gitlab/$filename"
 		else
 			echo "ignore $filename"
 		fi
@@ -48,8 +48,8 @@ done
 rm -rf ./main_tmp/
 
 # git commit to github
-cd ./gitee/
+cd ./gitlab/
 git add *
 git commit -a -m "merge with main branch"
-git push origin gitee
+git push origin gitlab
 cd ../

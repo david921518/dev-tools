@@ -5,8 +5,8 @@
 ## 自述 (README)
 | 语言 | 链接 |
 |------|------|
-| 中文 | [链接](https://github.com/david921518/dev-tools/blob/master/github-merge/README.md) |
-| 英文 (English) | [链接](https://github.com/david921518/dev-tools/blob/master/github-merge/README.en.md) |
+| 中文 | [链接](https://gitcode.com/david921518/dev-tools/blob/gitcode/github-merge/README.md) |
+| 英文 (English) | [链接](https://gitcode.com/david921518/dev-tools/blob/gitcode/github-merge/README.en.md) |
 
 ## 使用场景
 gitee 仓库同步 github 仓库，并保持所有访问链接调整为指向 gitee 仓库的 URL

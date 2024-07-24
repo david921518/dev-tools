@@ -4,7 +4,7 @@
 
 github_url='https://github.com/david921518/qkd-app/blob/master'
 gitlab_url='https://gitlab.com/david921518/qkd-app/blob/gitlab'
-ignore_files=("./github-merge/setup.sh" "./github-merge/replace_gitee.sh" "./github-merge/replace_gitlab.sh" "./LICENSE")
+ignore_files=("")
 
 rm -rf ./main_tmp
 mkdir -p ./main_tmp

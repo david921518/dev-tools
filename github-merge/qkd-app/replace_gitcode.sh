@@ -3,16 +3,16 @@
 # tested on Ubuntu 22.04
 
 github_url='https://github.com/david921518/qkd-app/blob/master'
-gitee_url='https://gitee.com/david921518/qkd-app/blob/gitee'
+gitcode_url='https://gitcode.com/david921518/qkd-app/blob/gitcode'
 ignore_files=("")
 
 rm -rf ./main_tmp
 mkdir -p ./main_tmp
 
-rm -rf ./gitee/*
+rm -rf ./gitcode/*
 
 cp -af ./main/* ./main_tmp/
-cp -af ./main/* ./gitee/
+cp -af ./main/* ./gitcode/
 
 cd ./main_tmp/
 files=$(find .)
@@ -30,7 +30,7 @@ do
 		done
 		if [[ "$matched" == 'false' ]]; then
 			echo "replace $filename"
-			sed "s^$github_url^$gitee_url^" "./main_tmp/$filename" > "./gitee/$filename"
+			sed "s^$github_url^$gitcode_url^" "./main_tmp/$filename" > "./gitcode/$filename"
 		else
 			echo "ignore $filename"
 		fi
@@ -42,8 +42,8 @@ done
 rm -rf ./main_tmp/
 
 # git commit to github
-cd ./gitee/
+cd ./gitcode/
 git add *
 git commit -a -m "merge with main branch"
-git push origin gitee
+git push origin gitcode
 cd ../

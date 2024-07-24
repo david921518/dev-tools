@@ -44,6 +44,6 @@ rm -rf ./main_tmp/
 # git commit to github
 cd ./gitlab/
 git add *
-git commit -a -m "merge with main branch"
+git commit -S -a -m "merge with main branch"
 git push origin gitlab
 cd ../

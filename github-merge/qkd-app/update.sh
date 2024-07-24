@@ -14,3 +14,7 @@ cd ./gitlab/
 git pull
 cd ../
 
+cd ./gitcode/
+git pull
+cd ../
+

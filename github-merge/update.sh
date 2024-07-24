@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # tested on Ubuntu 22.04
 

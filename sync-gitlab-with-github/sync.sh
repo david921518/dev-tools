@@ -8,6 +8,6 @@ cp -af ./github/* ./gitlab/
 # git commit to github
 cd ./gitlab/
 git add *
-git commit -a -m "merge with main branch"
+git commit -a -m "sync with github repo"
 git push origin gitlab
 cd ../

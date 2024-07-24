@@ -50,6 +50,6 @@ rm -rf ./main_tmp/
 # git commit to github
 cd ./gitcode/
 git add *
-git commit -a -m "merge with main branch"
+git commit -S -a -m "merge with main branch"
 git push origin gitcode
 cd ../

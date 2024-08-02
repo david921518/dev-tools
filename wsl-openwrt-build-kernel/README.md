@@ -78,6 +78,8 @@ cp config.buildinfo op-23.05.4/.config
 
 ### 7、配置 linux
 
+首先运行 [env_wsl.sh](https://github.com/david921518/dev-tools/blob/main/wsl-openwrt-build-kernel/env_wsl.sh) 配置 PATH
+
 在工作目录 /home/yuhui/wks/openwrt/ 下，执行以下命令：
 
 ```bash
@@ -97,6 +99,50 @@ make V=99 target/linux/compile
 ```
 
 等待编译结束
+
+
+## 定制内核
+
+在 OpenWrt 上运行 docker 时遇到一个问题：
+
+```bash
+failed to register layer: lsetxattr security.capability /usr/bin/ping: operation not supporte
+```
+
+在 [Docker pull fails - failed to register layer: operation not supported](https://forum.openwrt.org/t/docker-pull-fails-failed-to-register-layer-operation-not-supported/138253/63?page=2) 中提到需要在 kernel 中增加 CONFIG_EXT4_FS_POSIX_ACL=y 和 CONFIG_EXT4_FS_SECURITY=y 。
+
+### 1、获取当前 kernel 配置
+
+在当前运行的 OpenWrt 上加载 configs.ko ，通过 zcat /proc/config.gz 获取当前运行的 linux 内核配置。
+
+[openwrt-23.05.4-x86_64-linux_config](https://github.com/david921518/dev-tools/blob/main/wsl-openwrt-build-kernel/openwrt-23.05.4-x86_64-linux_config)
+
+### 2、修改 linux 内核配置并编译
+
+[ext4_fs_posix_acl.diff](https://github.com/david921518/dev-tools/blob/main/wsl-openwrt-build-kernel/ext4_fs_posix_acl.diff)
+
+[openwrt-23.05.4-x86_64-linux_config_david921518](https://github.com/david921518/dev-tools/blob/main/wsl-openwrt-build-kernel/openwrt-23.05.4-x86_64-linux_config_david921518)
+
+使用上述 diff 文件修改当前 op-23.05.4/ 目录中的文件
+
+复制 openwrt-23.05.4-x86_64-linux_config_david921518 到 op-23.05.4/build_dir/target-x86_64_musl/linux-x86_64/linux-5.15.162/.config
+
+### 3、重新编译内核
+
+在工作目录 /home/yuhui/wks/openwrt/ 下，执行以下命令：
+
+```bash
+cd op-23.05.4/
+make V=99 target/linux/compile
+```
+
+### 4、测试新内核
+
+[bzImage](https://github.com/david921518/dev-tools/blob/main/wsl-openwrt-build-kernel/bzImage)
+
+[configs.ko](https://github.com/david921518/dev-tools/blob/main/wsl-openwrt-build-kernel/configs.ko)
+
+在工作目录 /home/yuhui/wks/openwrt/ 下，执行以下命令：
 
 
 ## 参考资料

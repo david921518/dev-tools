@@ -1,0 +1,39 @@
+diff --git a/config/Config-kernel.in b/config/Config-kernel.in
+index ea828ae9cb..d184fb054e 100644
+--- a/config/Config-kernel.in
++++ b/config/Config-kernel.in
+@@ -1169,11 +1169,6 @@ menu "Filesystem ACL and attr support options"
+ 		select KERNEL_FS_POSIX_ACL
+ 		default y if USE_FS_ACL_ATTR
+ 
+-	config KERNEL_EXT4_FS_POSIX_ACL
+-		bool "Enable POSIX ACL for Ext4 Filesystems"
+-		select KERNEL_FS_POSIX_ACL
+-		default y if USE_FS_ACL_ATTR
+-
+ 	config KERNEL_F2FS_FS_POSIX_ACL
+ 		bool "Enable POSIX ACL for F2FS Filesystems"
+ 		select KERNEL_FS_POSIX_ACL
+@@ -1319,9 +1314,6 @@ config KERNEL_LSM
+ 	default "lockdown,yama,loadpin,safesetid,integrity,selinux"
+ 	depends on KERNEL_SECURITY_SELINUX
+ 
+-config KERNEL_EXT4_FS_SECURITY
+-	bool "Ext4 Security Labels"
+-
+ config KERNEL_F2FS_FS_SECURITY
+ 	bool "F2FS Security Labels"
+ 
+diff --git a/package/kernel/linux/modules/fs.mk b/package/kernel/linux/modules/fs.mk
+index a7fc4ce4d5..a5243f17a3 100644
+--- a/package/kernel/linux/modules/fs.mk
++++ b/package/kernel/linux/modules/fs.mk
+@@ -226,6 +226,8 @@ define KernelPackage/fs-ext4
+   KCONFIG:= \
+ 	CONFIG_EXT4_FS \
+ 	CONFIG_EXT4_ENCRYPTION=n \
++	CONFIG_EXT4_FS_POSIX_ACL=y \
++	CONFIG_EXT4_FS_SECURITY=y \
+ 	CONFIG_JBD2
+   FILES:= \
+ 	$(LINUX_DIR)/fs/ext4/ext4.ko \

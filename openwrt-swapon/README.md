@@ -52,5 +52,12 @@ swapon /etc/swapfile
 /etc/swapfile swap swap defaults 0 0
 ```
 
+在文件 /etc/rc.local 中添加以下条目
+
+```bash
+swapon -a
+```
+
+
 ## 参考资料
 

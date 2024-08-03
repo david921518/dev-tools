@@ -1,6 +1,6 @@
-# OpenWrt 开启交换文件
+# OpenWrt 开启交换分区文件
 
-  本目录实现 Windows/WSL 环境下借助 OpenWrt 提供的预编译工具快速编译 Linux 内核的工具。
+  本目录实现 OpenWrt 环境下添加 swap 分区文件。
 
 ## 自述 (README)
 | 语言 | 链接 |
